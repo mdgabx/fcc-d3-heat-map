@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/fcc-d3-heat-map/static/css/main.073c9b0a.css",
+    "main.js": "/fcc-d3-heat-map/static/js/main.12a176a3.js",
+    "static/js/787.132f905d.chunk.js": "/fcc-d3-heat-map/static/js/787.132f905d.chunk.js",
+    "static/media/logo.svg": "/fcc-d3-heat-map/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/fcc-d3-heat-map/index.html",
+    "main.073c9b0a.css.map": "/fcc-d3-heat-map/static/css/main.073c9b0a.css.map",
+    "main.12a176a3.js.map": "/fcc-d3-heat-map/static/js/main.12a176a3.js.map",
+    "787.132f905d.chunk.js.map": "/fcc-d3-heat-map/static/js/787.132f905d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.12a176a3.js"
+  ]
+}
