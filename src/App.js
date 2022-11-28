@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import HeatMap from "./components/heatMap";
 
 function App() {
-  const [heatData, setHeatData] = useState([]);
+  const [heatData, setHeatData] = useState();
 
   useEffect(() => {
     const url = 'https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/global-temperature.json';
@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="App">
-      <HeatMap dataset={heatData}/>
+      <HeatMap data={heatData}/>
     </div>
   );
 }
