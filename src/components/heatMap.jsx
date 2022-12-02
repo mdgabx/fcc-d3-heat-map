@@ -6,17 +6,47 @@ const HeatMap = ({data}) => {
 
     if(data !== null && data !== undefined) {
         const dataset = data.monthlyVariance;
+        const baseTemperature = data.baseTemperature;
 
-        console.log(dataset);
+        console.log(dataset, baseTemperature);
 
-        const height = 400;
-        const width = 800;
-        const padding = 40;
+        const height = 450;
+        const width = 900;
+        const padding = 60;
+        const minYear = d3.min(dataset, (d) => d.year);
+        const maxYear = d3.max(dataset, (d) => d.year);
 
         const svg = d3.select(".render")
             .append("svg")
             .attr("width", width)
             .attr("height", height)
+
+            const xScale = d3.scaleLinear()
+                        .domain([minYear, maxYear + 1])
+                        .range([padding, width - padding]);
+
+            const yScale = d3.scaleTime()
+                        .domain([new Date(0, 0, 0, 0, 0, 0, 0), new Date(0, 12, 0, 0, 0, 0, 0)])
+                        .range([padding, height - padding])
+
+            const xAxis = d3.axisBottom(xScale)
+                            .tickFormat(d3.format('d'))
+
+            const yAxis = d3.axisLeft(yScale)
+                            .tickFormat(d3.timeFormat('%B'))
+
+
+
+            svg.append('g')
+            .call(xAxis)
+            .attr("transform", "translate(0, " + (height - padding) + ")")
+            .attr("id", "x-axis")
+
+            svg.append('g')
+            .call(yAxis)
+            .attr("transform", "translate(" + (padding) +", 0)")
+            .attr("id", "y-axis")
+
 
         svg.selectAll("rect")
             .data(dataset)
@@ -35,38 +65,17 @@ const HeatMap = ({data}) => {
                } else {
                     return "red";
                }
-
             })
-
-
-        const xScale = d3.scaleLinear()
-                        .range([padding, width - padding]);
-
-        const yScale = d3.scaleTime()
-                        .range([padding, height - padding])
-
-        const xAxis = d3.axisBottom(xScale);
-        const yAxis = d3.axisLeft(yScale);
-
-      
-
-        svg.append('g')
-            .call(xAxis)
-            .attr("transform", "translate(0, " + (height - padding) + ")")
-            .attr("id", "x-axis");
-
-        svg.append('g')
-            .call(yAxis)
-            .attr("transform", "translate(" + (padding) +", 0)")
-            .attr("id", "y-axis")
-
+            .attr('data-year', (d) => d.year)
+            .attr('data-month', (d) => d.month - 1)
+            .attr('data-temp', (d) => baseTemperature + d.variance)
+            .attr('height', (height - (2 * padding)) / 12)
+            .attr('y', (d) => yScale(new Date(0, (d.month - 1), 0, 0, 0, 0, 0)))     
+            .attr('width', (width - (2 * padding)) / (maxYear - minYear))
+            .attr('x', (d) => xScale(d.year))
     }
 
 
-
-
-        
-   
 
     return ( 
         <main className="container">
