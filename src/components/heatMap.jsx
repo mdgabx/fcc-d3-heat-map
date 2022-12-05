@@ -77,6 +77,8 @@ const HeatMap = ({data}) => {
 
 
 
+
+
     return ( 
         <main className="container">
             <div className="chart">
@@ -85,6 +87,26 @@ const HeatMap = ({data}) => {
                 <div className="render">
                     
                 </div>
+                <svg id="legend">
+               
+                    <g>
+                    <rect x="10" y="0" width="40" height="20" fill="SteelBlue" id="blueLegend" />
+                    <text x="60" y="20" fill="black">Variance of -1 or less</text>
+                    </g>
+                    
+                    <g>
+                    <rect x="10" y="20" width="40" height="20" fill="LightSteelBlue" id="blueLegend" />
+                    <text x="60" y="40" fill="black">On or below Average</text>
+                    </g>
+                    <g>
+                    <rect x="10" y="40" width="40" height="20" fill="Orange" id="blueLegend" />
+                    <text x="60" y="60" fill="black">Above Average</text>
+                    </g>
+                    <g>
+                    <rect x="10" y="60" width="40" height="20" fill="red" id="blueLegend" />
+                    <text x="60" y="80" fill="black">Variance of +1 or more</text>
+                    </g>
+                </svg>
             </div>
         </main>
     );

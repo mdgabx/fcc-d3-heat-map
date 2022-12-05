@@ -12,12 +12,15 @@ body {
   font-family: var(--fontFamily);
   margin: var(--unset-padding);
   padding: var(--unset-margin);
- 
+  background: var(--gradient);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
 }
 
 .container {
-  background: var(--gradient);
-  height: 100vh;
   width: 100vw;
   display: flex;
   align-items: center;
@@ -28,6 +31,7 @@ body {
   background: #fff;
   padding: 0.8rem 1.1rem;
   border-radius: var(--borderRadius);
+  margin: 5em;
 }
 
 #title {
@@ -38,3 +42,9 @@ body {
 #description {
   text-align: center;
 }
+
+#legend > g > text {
+  color: #000;
+}
+
+
