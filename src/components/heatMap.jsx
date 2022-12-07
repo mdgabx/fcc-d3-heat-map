@@ -84,26 +84,24 @@ const HeatMap = ({data}) => {
             <div className="chart">
                 <h1 id="title">Monthly Global Land-Surface Temperature</h1>
                 <p id="description">1753 - 2015: base temperature 8.66℃</p>
-                <div className="render">
-                    
-                </div>
+                <div className="render"></div>
                 <svg id="legend">
                
                     <g>
-                    <rect x="10" y="0" width="40" height="20" fill="SteelBlue" id="blueLegend" />
+                    <rect x="10" y="0" width="40" height="20" fill="SteelBlue" />
                     <text x="60" y="20" fill="black">Variance of -1 or less</text>
                     </g>
                     
                     <g>
-                    <rect x="10" y="20" width="40" height="20" fill="LightSteelBlue" id="blueLegend" />
+                    <rect x="10" y="20" width="40" height="20" fill="LightSteelBlue" />
                     <text x="60" y="40" fill="black">On or below Average</text>
                     </g>
                     <g>
-                    <rect x="10" y="40" width="40" height="20" fill="Orange" id="blueLegend" />
+                    <rect x="10" y="40" width="40" height="20" fill="Orange" />
                     <text x="60" y="60" fill="black">Above Average</text>
                     </g>
                     <g>
-                    <rect x="10" y="60" width="40" height="20" fill="red" id="blueLegend" />
+                    <rect x="10" y="60" width="40" height="20" fill="red" />
                     <text x="60" y="80" fill="black">Variance of +1 or more</text>
                     </g>
                 </svg>
