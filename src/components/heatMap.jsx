@@ -8,13 +8,13 @@ const HeatMap = ({data}) => {
         const dataset = data.monthlyVariance;
         const baseTemperature = data.baseTemperature;
 
-        console.log(dataset, baseTemperature);
-
         const height = 450;
         const width = 900;
         const padding = 60;
         const minYear = d3.min(dataset, (d) => d.year);
         const maxYear = d3.max(dataset, (d) => d.year);
+        
+        let tooltip = d3.select('#tooltip')
 
         const svg = d3.select(".render")
             .append("svg")
@@ -53,6 +53,35 @@ const HeatMap = ({data}) => {
             .enter()
             .append("rect")
             .attr("class", "cell")
+            .on('mouseover', (event, d) => {
+                console.log('event', event);
+
+                tooltip.transition()
+                        .style("visibility", "visible")
+                        .style("position", "absolute")
+                        .style("top", event.pageY - 50 + "px")
+                        .style("left", event.pageX - 10 + "px")
+                        .attr('data-year', d.year)
+                        
+
+                let monthNames = [
+                    'January',
+                    'February',
+                    'March',
+                    'April',
+                    'May',
+                    'June',
+                    'July',
+                    'August',
+                    'September',
+                    'October',
+                    'November',
+                    'December'
+                ]
+
+                tooltip.text(d.year + " " + monthNames[d.month - 1] + ' - ' +  (baseTemperature + d.variance))
+            })
+            .on('mouseout', (d) => tooltip.transition().style("visibility", "hidden"))
             .attr("fill", (d) => {
                 console.log('d', d)
 
@@ -73,18 +102,17 @@ const HeatMap = ({data}) => {
             .attr('y', (d) => yScale(new Date(0, (d.month - 1), 0, 0, 0, 0, 0)))     
             .attr('width', (width - (2 * padding)) / (maxYear - minYear))
             .attr('x', (d) => xScale(d.year))
+            
     }
-
-
-
-
 
     return ( 
         <main className="container">
+            
             <div className="chart">
                 <h1 id="title">Monthly Global Land-Surface Temperature</h1>
                 <p id="description">1753 - 2015: base temperature 8.66℃</p>
                 <div className="render"></div>
+                <div id="tooltip"></div>
                 <svg id="legend">
                
                     <g>
